@@ -1,6 +1,6 @@
 import { createReducer, on, props } from "@ngrx/store";
 import { initialState } from "../state/post.state";
-import { addPost } from "./post.action";
+import { addPost, deletePost } from "./post.action";
 import { updatePost } from "../state/post.action";
 const _postsReducer = createReducer(
   initialState,
@@ -30,13 +30,31 @@ const _postsReducer = createReducer(
      * variable else already exist post
      */
     const updatePosts = state.post.map((post) => {
-      return action.post.id === post.id ? action.post : post;
+      return action.post.id === post.id
+        ? action.post
+        : post;
     });
 
     //Store updatePosts in post
     return {
       ...state,
       post: updatePosts,
+    };
+  }),
+  on(deletePost, (state, { id }) => {
+    /**
+     * return all posts which post.id not equal to incoming id (using filter)
+     *
+     * It means in updatedPosts contain all posts(expect delete post)
+     */
+    const updatedPosts = state.post.filter((post) => {
+      return post.id !== id;
+    });
+    // console.log(updatedPosts);
+    //Store updatedPosts in post
+    return {
+      ...state,
+      post: updatedPosts,
     };
   })
 );

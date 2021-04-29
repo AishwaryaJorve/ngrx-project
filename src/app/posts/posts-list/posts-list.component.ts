@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Post } from "src/app/models/post.model";
 import { AppState } from "src/app/store/app.state";
+import { deletePost } from "../state/post.action";
 import { getPost } from "../state/post.selector";
 
 @Component({
@@ -17,5 +18,11 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.post = this.store.select(getPost);
+  }
+
+  onDeletePost(id: string) {
+    if (confirm("Are you sure you want to delete")) {
+      this.store.dispatch(deletePost({ id }));
+    }
   }
 }
