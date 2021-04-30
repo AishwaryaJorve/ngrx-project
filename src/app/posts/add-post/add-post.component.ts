@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { Post } from "src/app/models/post.model";
 import { AppState } from "src/app/store/app.state";
@@ -55,12 +59,17 @@ export class AddPostComponent implements OnInit {
    * @returns
    */
   showDescriptionErrors() {
-    const descriptionForm = this.postForm.get("description");
+    const descriptionForm = this.postForm.get(
+      "description"
+    );
+    //checking after touched and not valid
     if (descriptionForm.touched && !descriptionForm.valid) {
+      //checking error for required
       if (descriptionForm.errors.required) {
         return "Description is required";
       }
 
+      //checking error for minlength
       if (descriptionForm.errors.minlength) {
         return "Description should be of minimum 10 characters length";
       }
