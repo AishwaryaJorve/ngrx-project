@@ -1,7 +1,7 @@
-import { createReducer, on, props } from "@ngrx/store";
 import { initialState } from "../state/post.state";
 import { addPost, deletePost } from "./post.action";
 import { updatePost } from "../state/post.action";
+import { createReducer, on } from "@ngrx/store";
 const _postsReducer = createReducer(
   initialState,
   on(addPost, (state, action) => {
@@ -30,9 +30,7 @@ const _postsReducer = createReducer(
      * variable else already exist post
      */
     const updatePosts = state.post.map((post) => {
-      return action.post.id === post.id
-        ? action.post
-        : post;
+      return action.post.id === post.id ? action.post : post;
     });
 
     //Store updatePosts in post

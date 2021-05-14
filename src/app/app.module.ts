@@ -8,10 +8,7 @@ import { CounterOutputComponent } from "./counter/counter-output/counter-output.
 import { StoreModule } from "@ngrx/store";
 import { counterReducer } from "./counter/state/counter.reducer";
 import { CustomCounterInputComponent } from "./counter/custom-counter-input/custom-counter-input.component";
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HomeComponent } from "./home/home.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HeaderComponent } from "./shared/header/header.component";
